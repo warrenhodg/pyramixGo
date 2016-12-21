@@ -42,9 +42,38 @@ Rotations are described in the clockwise direction while looking at the front fa
 5. Moves with a single quotation mark are in the opposite direction.  
 
 ## Method
-1. Align the corner pieces to match the picture above.
+1. Position the corner pieces to match their locations in the picture above (don't bother rotating them yet).
 2. Find the line with the "before state" field matching your puzzle's state.
 3. The "level" field indicates how many moves are remaining to solve the puzzle.
 3. Perform the "rotation type" specified on that line.
 4. This will result in the "after state" of that line.
-5. Repeat from step 2 until the puzzle is solved.
+5. Repeat from step 2 until the puzzle is solved, except the corners.
+6. Solve the corners.
+
+## Example
+```
+     LEFT - RED    FRONT - YELLOW    RIGHT - GREEN
+             /\          /\          /\
+            / G\        / R\        / Y\
+           /\ G/\      /\ R/\      /\ Y/\
+          / G\/ G\    / R\/ B\    / Y\/ Y\
+         /\ R/\ R/\  /\ Y/\ B/\  /\ Y/\ G/\
+        / R\/ R\/ R\/ Y\/ B\/ G\/ B\/ R\/ G\
+                    \ B/\ G/\ Y/
+                     \/ B\/ G\/
+                      \ B/\ Y/
+                       \/ B\/
+                        \ B/
+                         \/
+                  BOTTOM - BLUE
+```
+
+1. You will notice that the corners are in their correct positions, although rotated incorrectly.
+2. Find `YBBRRBBGGBBYRRRGGGYRGYYY` in the solution :
+`Level 2 YBBRRBBGGBBYRRRGGGYRGYY RIGHT' YYYYRRRBBBBBBRRRGGGGGGYYY`
+3. Turn the right corner anti-clockwise.
+4. Find `YYYYRRRBBBBBBRRRGGGGGGYYY` in the solution :
+`Level 1 YYYRRRBBBBBBRRRGGGGGGYYY TOP YYYYYYBBBBBBRRRRRRGGGGGG`
+5. Turn the top corner clockwise.
+6. Now the problem is solved, with the exception of the bottom-right corner, so just rotate it into position.
+
