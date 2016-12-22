@@ -152,14 +152,13 @@ func (this PyramixTransition) Less(b llrb.Item) bool {
 }
 
 func insertAndQ(tree *llrb.LLRB, q chan PyramixTransition, t PyramixTransition) bool {
-	replaced := tree.ReplaceOrInsert(t)
-	if replaced == nil {
+	found := tree.Has(t)
+	if !found {
+		tree.InsertNoReplace(t)
 		fmt.Println(t.ToString())
 		q <- t
-		return true
-	} else {
-		return false
 	}
+	return !found
 }
 
 func (this PyramixTransition) rotate(rotateType uint8) PyramixTransition {
