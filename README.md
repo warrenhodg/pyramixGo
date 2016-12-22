@@ -42,7 +42,7 @@ Rotations are described in the clockwise direction while looking at the front fa
 5. Moves with a single quotation mark are in the opposite direction.  
 
 ## Method
-1. Position the corner pieces to match their locations in the picture above (don't bother rotating them yet).
+1. Position the Y-R-G corner on the top and Y-R-B on the bottom-left.
 2. Find the line with the "before state" field matching your puzzle's state.
 3. The "level" field indicates how many moves are remaining to solve the puzzle.
 3. Perform the "rotation type" specified on that line.
