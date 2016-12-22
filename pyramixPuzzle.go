@@ -193,7 +193,6 @@ func solve() {
 
 	for {
 		if len(q) == 0 {
-			fmt.Println("Done")
 			break
 		}
 
@@ -212,6 +211,8 @@ func solve() {
 		}
 
 	}
+
+	fmt.Fprintf(os.Stderr, "%s Loop#:%d Q Size:%d Solutions: %d\n", time.Now().Format(time.RFC3339), turn, len(q), solutions)
 }
 
 func main() {
