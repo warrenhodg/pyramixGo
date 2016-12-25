@@ -39,6 +39,8 @@ var rotationLogic [][][]uint8 = [][][]uint8{
 	[][]uint8{[]uint8{15, 19, 9}, []uint8{12, 20, 10}, []uint8{13, 23, 11}}, //BACK
 }
 
+var startTime = time.Now()
+
 type PyramixPuzzle uint64
 type PyramixTransition struct {
 	oldState PyramixPuzzle
@@ -171,6 +173,7 @@ func (this PyramixTransition) rotate(rotateType uint8) PyramixTransition {
 }
 
 func solve() {
+	fmt.Fprintf(os.Stderr, "%5.1fs Loop#:0 Q Size:0 Solutions: 0\n", float32(0))
 	q := make(chan PyramixTransition, 100000000)
 
 	var p PyramixPuzzle
@@ -207,12 +210,14 @@ func solve() {
 		turn += 8
 
 		if (turn % 1000000) == 0 {
-			fmt.Fprintf(os.Stderr, "%s Loop#:%d Q Size:%d Solutions: %d\n", time.Now().Format(time.RFC3339), turn, len(q), solutions)
+			runTime := time.Now().Sub(startTime)
+			fmt.Fprintf(os.Stderr, "%5.1fs Loop#:%d Q Size:%d Solutions: %d\n", float32(runTime.Seconds()), turn, len(q), solutions)
 		}
 
 	}
 
-	fmt.Fprintf(os.Stderr, "%s Loop#:%d Q Size:%d Solutions: %d\n", time.Now().Format(time.RFC3339), turn, len(q), solutions)
+	runTime := time.Now().Sub(startTime)
+	fmt.Fprintf(os.Stderr, "%5.1fs Loop#:%d Q Size:%d Solutions: %d\n", float32(runTime.Seconds()), turn, len(q), solutions)
 }
 
 func main() {
